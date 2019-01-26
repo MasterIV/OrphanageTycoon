@@ -5,7 +5,12 @@ import mouse from 'tin-engine/core/mouse';
 import config from './config/config';
 import TitleScene from './scenes/TitleScene';
 
+import rooms from './config/rooms';
+
 window.onload = () => {
+	for(var r in rooms)
+		graphics.add('img/rooms/'+r+'.png');
+
 	graphics.load(() => {
 		document.getElementById('loading').style.display = 'none';
 

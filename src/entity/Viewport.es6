@@ -32,8 +32,8 @@ export default class Viewport extends BaseViewport {
 
 	update(delta) {
 		super.update(delta);
-		if(!this.parent.supressClick && this.dragging) {
-			const diff = this.position.dif(this.dragging);
+		if(this.dragging && !this.parent.supressClick) {
+			const diff = this.position.dif(this.dragStart);
 			if(Math.abs(diff.x) + Math.abs(diff.y) > 10)
 				this.parent.supressClick = true;
 		}

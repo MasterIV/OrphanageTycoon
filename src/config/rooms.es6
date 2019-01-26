@@ -1,7 +1,7 @@
 export default {
 	dorm: {
 		price: 100,
-		width: 6,
+		width: 6
 	},
 	kitchen: {
 		price: 100,

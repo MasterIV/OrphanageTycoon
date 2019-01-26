@@ -22,7 +22,7 @@ export default class GameScene extends Scene {
 
 		this.add(staff);
 		this.add(viewport);
-		this.add(new Menu(new V2(0, config.screen.h - 128), new V2(config.screen.w, 128)));
+		this.add(new Menu(cursor));
 	}
 
 	click(pos) {

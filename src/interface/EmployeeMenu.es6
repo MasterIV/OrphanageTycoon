@@ -3,6 +3,7 @@ import Entity from 'tin-engine/basic/entity'
 import Button from 'tin-engine/basic/button';
 import {HorizontalLayout} from 'tin-engine/basic/layout';
 import {VerticalLayout} from 'tin-engine/basic/layout';
+import EmployeeInfo from './EmployeeInfo';
 
 export default class EmployeeMenu extends Entity {
 	constructor(pos, size) {

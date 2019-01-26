@@ -32,25 +32,29 @@ export default class Orphanage extends Entity {
 
 		if(width > maxSize)
 			return false; // We exceed the max building size here
-		if(floor > 0 && width > width(this.floors[floor-1][direction]))
+		if(floor > 0 && width > calcWidth(this.floors[floor-1][direction]))
 			return false; // do not build a floor larger than the previous one!
 
 		return true;
 	}
 
 	addFloor() {
-		this.add(new ImageEntity(new V2( stairsX, -96*this.floors.length), 'img/rooms/stairs.png'));
+		this.add(new ImageEntity(new V2( stairsX, -96*this.floors.length-96), 'img/rooms/stairs.png'));
 		this.floors.push({left:[], right:[]});
 	}
 
 	addRoom( room, floor, direction ) {
 		if(this.isValid(room, floor, direction)) {
 			if(!this.floors[floor]) this.addFloor();
-			const width = calcWidth(this.floors[floor][direction]) * 32;
-			const x = direction == 'left' ? stairsX - width - rooms[room].width * 32 :  stairsX + width + 96;
-			const img = new ImageEntity(new V2(x , -96*floor), 'img/rooms/'+room+'.png')
+			const img = new ImageEntity(this.getPosition(room, floor, direction), 'img/rooms/'+room+'.png')
 			this.add(img);
 			this.floors[floor][direction].push({...rooms[room], employee: null, entity: img});
 		}
+	}
+
+	getPosition( room, floor, direction ) {
+		const width = calcWidth(this.floors[floor] ? this.floors[floor][direction] : []) * 32;
+		const x = direction == 'left' ? stairsX - width - rooms[room].width * 32 :  stairsX + width + 96;
+		return new V2(x , -96*floor-96);
 	}
 }

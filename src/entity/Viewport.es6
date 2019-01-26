@@ -1,7 +1,7 @@
 import BaseViewport from 'tin-engine/lib/viewport';
 import V2 from 'tin-engine/geo/v2';
 
-const maxY = 240;
+const maxY = 340;
 
 export default class Viewport extends BaseViewport {
 	constructor(orphanage) {
@@ -28,5 +28,16 @@ export default class Viewport extends BaseViewport {
 		pos = pos.dif(this.position);
 		if (this.onMouseUp && this.onMouseUp(pos)) return true;
 		return this.dispatchReverse(this.entities, 'mouseup', pos);
+	}
+
+
+	click(pos) {
+		pos = pos.dif(this.position);
+
+		if (this.blocking.length) {
+			return this.dispatchReverse(this.blocking, 'click', pos);
+		} else {
+			return this.dispatchReverse(this.entities, 'click', pos);
+		}
 	}
 }

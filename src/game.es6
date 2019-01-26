@@ -14,11 +14,6 @@ window.onload = () => {
 	}
 	
 	graphics.add('img/ui/gamebg.png');
-	graphics.add('img/ui/buildmenubutton.png');
-	graphics.add('img/ui/employeemenubutton.png');
-	graphics.add('img/ui/kidsmenubutton.png');
-	graphics.add('img/ui/notificationmenubutton.png');
-	
 
 	graphics.load(() => {
 		document.getElementById('loading').style.display = 'none';

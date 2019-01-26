@@ -4,10 +4,13 @@ import rooms from '../config/rooms';
 const maxSize = 20;
 
 export default class Orphanage extends Entity {
-	floors = [{left:[rooms.dorm], right:[rooms.kitchen]}];
+	floors = [];
 
 	constructor() {
 		super();
+		this.addFloor();
+		this.addRoom('kitchen', 0, 'left');
+		this.addRoom('dorm', 0, 'right');
 	}
 
 	isValid(room, floor, direction) {
@@ -15,11 +18,11 @@ export default class Orphanage extends Entity {
 			if (!this.floors[floor - 1])
 				return false; // Skipping a floor here !?!
 			else
-				this.floors[floor] = {left:[], right:[]};
+				this.addFloor();
 		}
 
 		const current = this.floors[floor][direction];
-		const width = current.reduce((a,b) => ({width: a.width+b.width})).width + room.width;
+		const width = current.reduce((a,b) => ({width: a.width+b.width})).width + rooms[room].width;
 
 		if(width > maxSize)
 			return false; // We exceed the max building size here
@@ -29,9 +32,15 @@ export default class Orphanage extends Entity {
 		return true;
 	}
 
-	add( room, floor, direction ) {
-		if(this.isValid(room, floor, direction))
-			this.floors[floor][direction].push(room);
+	addFloor() {
+		this.floors.push({left:[], right:[]});
+	}
+
+	addRoom( room, floor, direction ) {
+		if(this.isValid(room, floor, direction)) {
+			this.floors[floor][direction].push({...rooms[room], employee: null});
+			this.add(nee)
+		}
 	}
 
 	draw() {

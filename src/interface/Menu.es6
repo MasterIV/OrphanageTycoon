@@ -6,6 +6,12 @@ import EmployeeMenu from './../interface/EmployeeMenu';
 import NotificationMenu from './../interface/NotificationMenu';
 import Button from 'tin-engine/basic/button';
 import {VerticalLayout} from 'tin-engine/basic/layout';
+import graphics from 'tin-engine/core/graphic';
+
+graphics.add('img/ui/buildmenubutton.png');
+graphics.add('img/ui/employeemenubutton.png');
+graphics.add('img/ui/kidsmenubutton.png');
+graphics.add('img/ui/notificationmenubutton.png');
 
 export default class Menu extends Entity {
 	constructor(pos, size) {

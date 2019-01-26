@@ -11,6 +11,7 @@ export default class GameScene extends Scene {
 		super();
 		this.setSize(config.screen.w, config.screen.h);
 		this.bg = 'img/ui/gamebg.png';
+		this.supressClick = false;
 
 		const orphanage = new Orphanage();
 		const cursor = new Cursor(orphanage);
@@ -19,5 +20,13 @@ export default class GameScene extends Scene {
 
 		this.add(viewport);
 		this.add(new Menu(new V2(0, config.screen.h - 128), new V2(config.screen.w, 128)));
+	}
+
+	click(pos) {
+		if(this.supressClick) {
+			this.supressClick = false;
+		} else {
+			super.click(pos);
+		}
 	}
 }

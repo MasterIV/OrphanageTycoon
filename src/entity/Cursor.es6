@@ -39,7 +39,6 @@ export default class Cursor extends Entity {
 		}
 	}
 
-
 	click(pos) {
 		if (this.selected) {
 			this.orphanage.addRoom(this.selected, this.floor, this.direction);

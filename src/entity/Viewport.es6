@@ -30,6 +30,14 @@ export default class Viewport extends BaseViewport {
 		return this.dispatchReverse(this.entities, 'mouseup', pos);
 	}
 
+	update(delta) {
+		super.update(delta);
+		if(!this.parent.supressClick && this.dragging) {
+			const diff = this.position.dif(this.dragging);
+			if(Math.abs(diff.x) + Math.abs(diff.y) > 10)
+				this.parent.supressClick = true;
+		}
+	}
 
 	click(pos) {
 		pos = pos.dif(this.position);

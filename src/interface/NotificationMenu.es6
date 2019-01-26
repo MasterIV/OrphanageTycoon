@@ -10,11 +10,17 @@ export default class NotificationMenu extends Entity {
 		super(pos, size);
 		this.notificationFont = new FontStyle(12, 'white');
 		this.notifications = new VerticalLayout(new V2(592/2,12), 0, 0);
-		this.notifications.add(new Notification('asdf', this.notificationFont));
 		this.add(this.notifications);
+		this.addNotification = this.addNotification.bind(this);
+		window.addEventListener('notification', this.addNotification);
 	}
 	
-	addNotification(text) {
-		this.notifications.add(new Notification(text, this.notificationFont));
+	addNotification(e) {
+		if(e.detail.type == 'new_child') {
+			this.notifications.add(new Notification(e.detail.child + ' appeared on your doorstep.', this.notificationFont));
+		}
+		else if(e.detail.type == '') {
+			
+		}
 	}
 }

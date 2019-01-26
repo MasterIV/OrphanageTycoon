@@ -36,8 +36,6 @@ export default class Menu extends Entity {
 
 		this.add(menuButtonLayout);
 		this.add(this.buildMenu);
-		
-		this.notificationMenu.addNotification('Test post please ignore');
 	}
 	
 	switchMenu(index) {

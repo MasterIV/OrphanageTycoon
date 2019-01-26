@@ -8,5 +8,11 @@ import EmployeeInfo from './EmployeeInfo';
 export default class EmployeeMenu extends Entity {
 	constructor(pos, size) {
 		super(pos, size);
+		this.employees = new VerticalLayout(Zero(), 0, 0);
+		this.add(this.employees);
+	}
+	
+	addEmployee(employee) {
+		this.employees.add(employee);
 	}
 }

@@ -19,7 +19,7 @@ export default class Staff extends Entity {
 	}
 
 	canHire(employee) {
-		const current = this.entitie.filter(e => e.type == employee.type).length;
+		const current = this.hired.filter(e => e.type == employee.type).length;
 		const max = this.orphanage.counts[employee.type];
 		return current < max && this.orphanage.money > employee.salary;
 	}

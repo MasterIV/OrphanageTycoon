@@ -33,8 +33,10 @@ export default class Cursor extends Entity {
 	}
 
 	draw(ctx) {
-		ctx.fillStyle = this.error ? 'rgba(150,255,150, .5)' : 'rgba(255,150,150, .5)';
-		ctx.fillRect(this.position.x, this.position.y, rooms[this.selected].width*32, 96);
+		if (this.selected) {
+			ctx.fillStyle = this.error ? 'rgba(150,255,150, .5)' : 'rgba(255,150,150, .5)';
+			ctx.fillRect(this.position.x, this.position.y, rooms[this.selected].width * 32, 96);
+		}
 	}
 
 

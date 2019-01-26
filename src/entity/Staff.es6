@@ -1,7 +1,7 @@
 import Entity from 'tin-engine/basic/entity';
 import rooms from '../config/rooms';
 import V2, {Zero} from 'tin-engine/geo/v2';
-import {arrayRemove} from './../util.es6';
+import {arrayRemove} from 'tin-engine/util';
 import Employee from './Employee';
 
 export default class Staff extends Entity {

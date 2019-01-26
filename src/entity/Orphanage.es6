@@ -77,7 +77,7 @@ export default class Orphanage extends Entity {
 	findFree(room) {
 		let result = null;
 
-		this.forEach(r -> {
+		this.forEach(r => {
 			if(r.type == room.type && !r.employee)
 				result = r;
 		});

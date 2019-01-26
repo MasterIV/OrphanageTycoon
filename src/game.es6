@@ -12,7 +12,8 @@ window.onload = () => {
 		graphics.add('img/rooms/'+r+'.png');
 		graphics.add('img/ui/' + 'build' + r + 'button' + '.png');
 	}
-	
+
+	graphics.add('img/rooms/stairs.png');
 	graphics.add('img/ui/gamebg.png');
 
 	graphics.load(() => {

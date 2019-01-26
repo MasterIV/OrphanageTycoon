@@ -4,6 +4,8 @@ import ImageEntity from 'tin-engine/basic/image';
 import V2, {Zero} from 'tin-engine/geo/v2';
 import {arrayRemove} from 'tin-engine/util';
 
+const cooldown = 2700;
+
 export default class Employee extends Entity {
 	constructor(max, type) {
 		super(new V2(96, 32));
@@ -16,5 +18,8 @@ export default class Employee extends Entity {
 
 	update(timer) {
 		this.timer += delta;
+		if(this.timer > cooldown) {
+			this.timer = 0;
+		}
 	}
 }

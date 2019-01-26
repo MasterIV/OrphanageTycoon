@@ -6,6 +6,7 @@ import Menu from '../interface/Menu';
 import Orphanage from '../entity/Orphanage';
 import Cursor from '../entity/Cursor';
 import Staff from '../entity/Staff';
+import Children from '../entity/Children';
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -18,7 +19,9 @@ export default class GameScene extends Scene {
 		const cursor = new Cursor(orphanage);
 		const staff = new Staff(orphanage);
 		const viewport = new Viewport(orphanage);
+		const children = new Children(orphanage);
 		viewport.add(cursor);
+		viewport.add(children);
 
 		this.add(staff);
 		this.add(viewport);

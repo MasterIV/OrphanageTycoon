@@ -22,8 +22,8 @@ export default class Kid extends Entity {
 		this.name = names[index];
 		this.gender = index % 2;
 
-		this.hunger = 100;
-		this.happiness = 50;
+		this.hunger = 50 + 30 * Math.random();
+		this.happiness = 40 + 20 * Math.random();
 		this.education = 0;
 
 		this.activity = 'idle';

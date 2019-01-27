@@ -38,7 +38,7 @@ export default class Kid extends Entity {
 		const index = room.use(this);
 		if(!index) return;
 
-		this.destination = new V2(pos.x + index * 48 - 32, pos.y + floorOffset);
+		this.destination = new V2(pos.x + index * 48 - 40, pos.y + floorOffset);
 		this.activity = 'walk';
 
 		console.log(this.name + ' want\'s to ' + room.activity, this);
@@ -66,7 +66,9 @@ export default class Kid extends Entity {
 			+ happinessLoss));
 	}
 
-
+	floor() {
+		return Math.abs(this.position.y / 96) | 0
+	}
 
 	selectActivity() {
 		if(sleepCooldown < this.sleep) {
@@ -89,6 +91,13 @@ export default class Kid extends Entity {
 
 		room = this.orphanage.findClosest(this, 'playroom');
 		if(room) return this.walkTo(room);
+
+		if(Math.random() > .025) {
+			// walk around randomly
+			const floor = this.orphanage.calcWidth(this.floor());
+			this.activity = 'walk';
+			this.destination = new V2((floor.x + (floor.y - floor.x - 32) * Math.random()) | 0, this.position.y);
+		}
 	}
 
 	completeActivity() {
@@ -121,14 +130,19 @@ export default class Kid extends Entity {
 		if(this.destination.y == this.position.y) {
 			if(this.destination.x == this.position.x) {
 				// destination reached
-				this.activity = this.room.activity;
-				this.duration = this.room.duration();
+				if(this.room) {
+					this.activity = this.room.activity;
+					this.duration = this.room.duration();
+				} else {
+					this.activity = 'idle';
+				}
+
 				return;
 			}
 
 			// move to room
 			this.updateWalkAxis(speed*delta, this.destination.x, 'x');
-		} if(this.climbing) {
+		} else if(this.climbing) {
 			// climb stairs
 			this.updateWalkAxis(speed * .8, this.destination.y, 'y');
 		} else {

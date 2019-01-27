@@ -26,6 +26,13 @@ export default class Orphanage extends Entity {
 		this.addRoom('dorm', 0, 'right');
 	}
 
+	calcWidth(floor) {
+		return new V2(
+			720 - 48 - calcWidth(this.floors[floor].left) * 32,
+			720 + 48 + calcWidth(this.floors[floor].left) * 32
+		)
+	}
+
 	isValid(room, floor, direction) {
 		if(!rooms[room])
 			return false;
@@ -86,7 +93,7 @@ export default class Orphanage extends Entity {
 	}
 
 	findClosest(child, room) {
-		const floor = Math.abs(child.position.y / 96) | 0;
+		const floor = child.floor();
 		let best = null;
 		let result = null;
 

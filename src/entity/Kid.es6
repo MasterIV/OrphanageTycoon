@@ -181,8 +181,8 @@ export default class Kid extends Entity {
 			default:
 				this.duration -= delta;
 				if(0 > this.duration) {
-					this.completeActivity();
 					this.room.leave(this);
+					this.completeActivity();
 					this.activity = 'idle';
 				}
 		}

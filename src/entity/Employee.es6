@@ -2,6 +2,12 @@ import Entity from 'tin-engine/basic/entity';
 import V2, { Zero } from 'tin-engine/geo/v2';
 import RectEntity from 'tin-engine/basic/rect';
 import names from '../config/names';
+import graphics from 'tin-engine/core/graphic';
+import Animation from 'tin-engine/lib/animation';
+
+graphics.add('img/animation/janitor.png');
+graphics.add('img/animation/classroom.png');
+graphics.add('img/animation/kitchen.png');
 
 const floorOffset = 26;
 
@@ -20,7 +26,7 @@ export default class Employee extends Entity {
 		this.duration = 0;
 		this.room = null;
 
-		this.add(new RectEntity(Zero(), new V2(32, 64)));
+		this.add(new Animation('img/animation/'+this.type+'.png', Zero(), 4, 300, true));
 	}
 
 	work(room) {

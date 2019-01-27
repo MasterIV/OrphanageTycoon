@@ -5,13 +5,14 @@ import V2, { Zero } from 'tin-engine/geo/v2';
 import names from '../config/names';
 import activities from '../config/activities';
 
-const hungerRate = 0.5;
-const sleepCooldown = 5;
+const hungerRate = 1.5;
+const sleepCooldown = 20;
 const speed = 100;
 const floorOffset = 58;
-const fine = 200;
+
+const fine = 500;
 const baseDonation = 100;
-const educationDonation = 20;
+const educationDonation = 15;
 
 export default class Kid extends Entity {
 	constructor(orphanage) {
@@ -66,7 +67,7 @@ export default class Kid extends Entity {
 			- delta * hungerRate * hungerFactor));
 		this.happiness = Math.max(0, Math.min(100, this.happiness
 			- delta * activities[this.activity].happiness
-			- happinessLoss));
+			- delta * happinessLoss));
 	}
 
 	floor() {
@@ -119,7 +120,7 @@ export default class Kid extends Entity {
 		}
 
 		// See if you get adopted!
-		const chance = this.education / 100 + this.happiness / 5000;
+		const chance = this.education / 200 + this.happiness / 5000;
 		if(Math.random() < chance) {
 			console.log('adoption', this);
 			const donation = baseDonation + educationDonation * this.education;

@@ -17,7 +17,7 @@ export default class Orphanage extends Entity {
 		super();
 		this.floors = [];
 
-		this.money = 2500;
+		this.money = 3000;
 		this.counts = {};
 		for(var i in rooms)
 			this.counts[i] = 0;

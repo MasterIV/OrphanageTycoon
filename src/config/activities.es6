@@ -4,24 +4,24 @@ export default {
 	},
 	learn: {
 		happiness: 2,
-		duration: 5000
+		duration: 8000
 	},
 	walk: {
 		happiness: .5
 	},
 	eat: {
 		happiness: 0,
-		duration: 3000,
-		value: 30
+		duration: 4000,
+		value: 45
 	},
 	play: {
 		happiness: 0,
-		duration: 3000,
-		value: 30
+		duration: 6000,
+		value: 35
 	},
 	sleep: {
 		happiness: 0,
-		duration: 8000
+		duration: 10000
 	},
 	repair: {
 		happiness: 0,

@@ -11,12 +11,14 @@ export default class Staff extends Entity {
 	constructor(orphanage) {
 		super();
 
+		const cook = new Employee(0, 'kitchen');
+
 		this.timer = 0;
 		this.orphanage = orphanage;
-		this.available = [];
+		this.available = [cook];
 		this.hired = [];
 
-		this.hire(new Employee(0, 'kitchen'));
+		this.hire(cook);
 		for(var i = 0; i < 5; i++)
 			this.available.push(new Employee(1));
 	}

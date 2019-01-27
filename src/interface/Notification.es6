@@ -3,8 +3,12 @@ import Entity from 'tin-engine/basic/entity';
 import TextEntity from 'tin-engine/basic/text';
 
 export default class Notification extends Entity {
-	constructor(text, font) {
-		super(Zero(), new V2(592, 16));
-		this.add(new TextEntity(Zero(), text, font));
+	constructor(pos, font) {
+		super(pos, new V2(592, 16));
+		this.add(new TextEntity(Zero(), 'afsd', font));
+	}
+	
+	text(string) {
+		this.entities[0].text = string;
 	}
 }

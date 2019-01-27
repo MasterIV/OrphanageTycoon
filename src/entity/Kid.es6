@@ -16,6 +16,11 @@ const baseDonation = 100;
 const educationDonation = 20;
 
 graphics.add('img/animation/adoption.png');
+graphics.add('img/animation/boy1.png');
+graphics.add('img/animation/boy2.png');
+graphics.add('img/animation/girl1.png');
+graphics.add('img/animation/girl2.png');
+const genders = ['boy', 'girl'];
 
 export default class Kid extends Entity {
 	constructor(orphanage) {
@@ -37,7 +42,14 @@ export default class Kid extends Entity {
 		this.destination = null;
 		this.climbing = false;
 
-		this.add(new RectEntity(Zero(), new V2(32, 32)));
+		this.direction = 0;
+		this.state = 1;
+
+		const rand = Math.round(Math.random())+1;
+		const url = 'img/animation/' + genders[this.gender] + rand + '.png';
+		this.img = new Animation(url, Zero(), new V2(8, 6), 120, true);
+
+		this.add(this.img);
 	}
 
 	walkTo(room) {
@@ -135,8 +147,10 @@ export default class Kid extends Entity {
 
 	updateWalkAxis(speed, d, axis) {
 		if(d > this.position[axis]) {
+			if(axis == 'x') this.direction = 0;
 			this.position[axis] = Math.min(d, this.position[axis] + speed);
 		} else {
+			if(axis == 'x') this.direction = 3;
 			this.position[axis] = Math.max(d, this.position[axis] - speed);
 		}
 	}
@@ -178,12 +192,15 @@ export default class Kid extends Entity {
 	updateActivity(delta) {
 		switch(this.activity) {
 			case 'idle':
+				this.state = 1;
 				this.selectActivity();
 				break;
 			case 'walk':
+				this.state = 0;
 				this.updateWalk(delta);
 				break;
 			default:
+				this.state = this.activity == 'sleep' ? 1 : 2;
 				this.duration -= delta;
 				if(0 > this.duration) {
 					this.room.leave(this);
@@ -196,6 +213,7 @@ export default class Kid extends Entity {
 	onUpdate(delta) {
 		this.updateStats(delta);
 		this.updateActivity(delta);
+		this.img.state = this.direction + this.state;
 
 		if(this.happiness < 1) {
 			// Kid ran away

@@ -103,7 +103,7 @@ export default class Orphanage extends Entity {
 
 				const dist = r.floor == floor
 					? Math.abs(e.position.x + e.width * 16 - child.position.x)
-					: Math.abs(e.position.x + e.width * 16 - 720) + 96 + Math.abs(720 - child.position.x);
+					: Math.abs(e.position.x + e.width * 16 - 720) + 96 * Math.abs(r.floor - floor) + Math.abs(720 - child.position.x);
 
 				if(best === null || best > dist) {
 					best = dist;

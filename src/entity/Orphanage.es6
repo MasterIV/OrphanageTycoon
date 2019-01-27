@@ -31,7 +31,7 @@ export default class Orphanage extends Entity {
 	calcWidth(floor) {
 		return new V2(
 			720 - 48 - calcWidth(this.floors[floor].left) * 32,
-			720 + 48 + calcWidth(this.floors[floor].left) * 32
+			720 + 48 + calcWidth(this.floors[floor].right) * 32
 		)
 	}
 

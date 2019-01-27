@@ -123,7 +123,7 @@ export default class Kid extends Entity {
 		}
 
 		// See if you get adopted!
-		const chance = 1; //this.education / 200 + this.happiness / 5000;
+		const chance = this.education / 200 + this.happiness / 5000;
 		if(Math.random() < chance) {
 			const donation = baseDonation + educationDonation * this.education;
 			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'adoption', child: this, donation: donation}}));

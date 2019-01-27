@@ -7,29 +7,36 @@ import ChildInfo from './ChildInfo';
 import Kid from './../entity/Kid';
 import config from './../config/config';
 
-class ChildList {
-	constructor(maxDisplayed, displayList) {
-		this.display = displayList;
-		this.children = [];
-		this.max = maxDisplayed;
-	}
-	
-	updateList() {
-		var displayPos = 0;
 
-		for(var i = this.currentPosition; i < this.children.length && displayPos < 6; i++) {
-			this.display[displayPos].setChild(this.children[i]);
-			displayPos++;
-		}
-	}
-	
-	add(child) {
-		
-	}
-}
 
 export default class ChildrenMenu extends Entity {
 	constructor(children) {
 		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
+		this.children = children;
+		this.childInfo = [];
+		for(var i = 0; i < 3; i++) {
+			const info = new ChildInfo(new V2(0, i * 40 + 8));
+			this.childInfo.push(info);
+			this.add(info);
+		}
+		
+		this.scrollOffset = 0;
+	}
+	
+	update(delta) {
+		var displayPos = 0;
+		for(var i = this.scrollOffset; displayPos < 3; i++) {
+			const child = i >= this.children.entities.length ? null : this.children.entities[i];
+			this.childInfo[displayPos].setChild(child);
+			displayPos++;
+		}
+	}
+	
+	scrollUp() {
+		scrollOffset = Math.max(0, scrollOffset - 1);
+	}
+	
+	scrollDown() {
+		scrollOffset = Math.min(children.entities.length - 1, scrollOffset + 1);
 	}
 }

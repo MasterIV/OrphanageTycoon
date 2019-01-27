@@ -24,6 +24,10 @@ export default class Children extends Entity {
 		window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'new_child', child: kid}}));
 	}
 
+	info() {
+		return this.entities.length + '/' + (this.orphanage.counts.dorm * 4);
+	}
+
 	onUpdate(delta) {
 		this.time += delta;
 		if(this.time > cooldown) {

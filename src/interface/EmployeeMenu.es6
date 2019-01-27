@@ -8,7 +8,7 @@ import config from './../config/config';
 
 export default class EmployeeMenu extends Entity {
 	constructor(staff) {
-		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
+		super(new V2(58, 0),  new V2(config.screen.w - 58, 128));
 		this.staff = staff;
 		
 		this.employeeDisplay = [];
@@ -18,8 +18,8 @@ export default class EmployeeMenu extends Entity {
 			this.add(info);
 		}
 		
-		this.add(Button.create(new V2(540, 10), () => this.scrollUp()).img('img/ui/upbutton.png'));
-		this.add(Button.create(new V2(540, 70), () => this.scrollDown()).img('img/ui/downbutton.png'));
+		this.add(Button.create(new V2(540, 8), () => this.scrollUp()).img('img/ui/upbutton.png'));
+		this.add(Button.create(new V2(540, 72), () => this.scrollDown()).img('img/ui/downbutton.png'));
 		
 		this.scrollOffset = 0;
 	}

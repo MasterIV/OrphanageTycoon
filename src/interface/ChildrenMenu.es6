@@ -11,7 +11,7 @@ import config from './../config/config';
 
 export default class ChildrenMenu extends Entity {
 	constructor(children) {
-		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
+		super(new V2(58, 0),  new V2(config.screen.w - 58, 128));
 		this.children = children;
 		this.childInfo = [];
 		for(var i = 0; i < 3; i++) {
@@ -20,8 +20,8 @@ export default class ChildrenMenu extends Entity {
 			this.add(info);
 		}
 		
-		this.add(Button.create(new V2(540, 10), () => this.scrollUp()).img('img/ui/upbutton.png'));
-		this.add(Button.create(new V2(540, 70), () => this.scrollDown()).img('img/ui/downbutton.png'));
+		this.add(Button.create(new V2(540, 8), () => this.scrollUp()).img('img/ui/upbutton.png'));
+		this.add(Button.create(new V2(540, 72), () => this.scrollDown()).img('img/ui/downbutton.png'));
 		
 		this.scrollOffset = 0;
 	}

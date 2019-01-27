@@ -1,10 +1,15 @@
 import V2, {Zero} from 'tin-engine/geo/v2';
 import Entity from 'tin-engine/basic/entity';
 import TextEntity from 'tin-engine/basic/text';
+import ImageEntity from 'tin-engine/basic/image';
+import graphics from 'tin-engine/core/graphic';
+
+graphics.add('img/ui/bar_children.png');
 
 export default class ChildInfo extends Entity {
 	constructor(pos) {
 		super(pos, new V2(592, 20));
+		this.add(new ImageEntity(Zero(), 'img/ui/bar_children.png'));
 		this.name = new TextEntity(new V2(140, 10), '');
 		this.hunger = new TextEntity(new V2(200, 10), '');
 		this.happiness = new TextEntity(new V2(240, 10), '');

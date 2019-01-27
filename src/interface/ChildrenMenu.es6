@@ -29,7 +29,7 @@ class ChildList {
 }
 
 export default class ChildrenMenu extends Entity {
-	constructor() {
+	constructor(children) {
 		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
 	}
 }

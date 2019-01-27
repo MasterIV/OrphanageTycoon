@@ -1,78 +1,40 @@
 import V2, {Zero} from 'tin-engine/geo/v2';
 import Entity from 'tin-engine/basic/entity'
 import Button from 'tin-engine/basic/button';
-import {HorizontalLayout} from 'tin-engine/basic/layout';
-import {VerticalLayout} from 'tin-engine/basic/layout';
 import EmployeeInfo from './EmployeeInfo';
-import Employee from './../entity/Employee';
 import {arrayRemove} from 'tin-engine/util';
 import config from './../config/config';
 
-class EmployeeList {
-	constructor(maxDisplayed, employeeDisplay) {
-		this.employees = [];
-		this.currentPosition = 0;
-		this.max = maxDisplayed;
-		this.parent = null;
-		this.employeeDisplay = employeeDisplay;
+
+export default class EmployeeMenu extends Entity {
+	constructor(staff) {
+		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
+		this.staff = staff;
+		
+		this.employeeDisplay = [];
+		for(var i = 0; i < 3; i++) {
+			const info = new EmployeeInfo(new V2(0, i * 40 + 8), staff);
+			this.employeeDisplay.push(info);
+			this.add(info);
+		}
+		
+		this.scrollOffset = 0;
 	}
 	
-	updateList() {
+	update(delta) {
 		var displayPos = 0;
-
-		for(var i = this.currentPosition; i < this.employees.length && displayPos < 6; i++) {
-			this.employeeDisplay[displayPos].setEmployee(this.employees[i]);
+		for(var i = this.scrollOffset; displayPos < 3; i++) {
+			const employee = i >= this.staff.hired.length ? ((i - this.staff.hired.length) >= this.staff.available.length ? null : this.staff.available[i - this.staff.hired.length]) : this.staff.hired[i];
+			this.employeeDisplay[displayPos].setEmployee(employee, (i >= this.staff.hired.length));
 			displayPos++;
 		}
 	}
 	
 	scrollUp() {
-		this.currentPosition = Math.max(0, this.currentPosition - 1);
-		this.updateList();
+		scrollOffset = Math.max(0, scrollOffset - 1);
 	}
 	
 	scrollDown() {
-		this.currentPosition = Math.min(this.employees.length - 1, this.currentPosition + 1);
-		this.updateList();
-	}
-	
-	add(employee) {
-		this.employees.push(employee);
-		this.updateList();
-	}
-	
-	remove(employee) {
-		arrayRemove(employee);
-		this.updateList();
-	}
-}
-
-export default class EmployeeMenu extends Entity {
-	constructor() {
-		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
-		this.employeeDisplay = [];
-		for(var i = 0; i < 6; i++) {
-			const info = new EmployeeInfo(new V2(0, i * 20));
-			this.employeeDisplay.push(info);
-			this.add(info);
-		}
-		
-		this.employees = new EmployeeList(6, this.employeeDisplay);
-	}
-	
-	addEmployee(employee) {
-		this.employees.add(employee);
-	}
-	
-	removeEmployee(employee) {
-		this.employees.remove(employee);
-	}
-	
-	scrollUp() {
-		this.employees.scrollUp();
-	}
-	
-	scrollDown() {
-		this.employees.scrollDown();
+		scrollOffset = Math.min(staff.available.length + staff.hired.length - 1, scrollOffset + 1);
 	}
 }

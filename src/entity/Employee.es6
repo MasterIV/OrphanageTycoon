@@ -19,6 +19,7 @@ export default class Employee extends Entity {
 		this.salary = 20 + this.level * 5;
 		this.idle = 0;
 		this.duration = 0;
+		this.room = null;
 
 		this.add(new RectEntity(Zero(), new V2(32, 64)));
 	}

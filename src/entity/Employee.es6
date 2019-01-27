@@ -1,8 +1,5 @@
 import Entity from 'tin-engine/basic/entity';
-import rooms from '../config/rooms';
-import ImageEntity from 'tin-engine/basic/image';
-import V2, {Zero} from 'tin-engine/geo/v2';
-import {arrayRemove} from 'tin-engine/util';
+import V2, { Zero } from 'tin-engine/geo/v2';
 import RectEntity from 'tin-engine/basic/rect';
 
 const cooldown = 2700;
@@ -25,7 +22,7 @@ export default class Employee extends Entity {
 		room.employee = this;
 		this.room = room;
 		this.position = new V2( room.width*32 - 48, floorOffset);
-		this.room.entity.add(this);
+		this.room.add(this);
 
 		if(this.type == 'janitor')
 			this.duration = room.duration();
@@ -35,7 +32,7 @@ export default class Employee extends Entity {
 		if(this.type == 'janitor') {
 			this.duration -= delta;
 			if(this.duration <= 0) {
-				this.room.entity.parent.repair();
+				this.room.parent.repair();
 				this.duration = this.room.duration();
 			}
 		}

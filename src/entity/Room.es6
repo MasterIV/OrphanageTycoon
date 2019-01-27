@@ -1,17 +1,22 @@
 import rooms from '../config/rooms';
 import activities from '../config/activities';
+import Entity from 'tin-engine/basic/entity';
+import ImageEntity from 'tin-engine/basic/image';
+import V2, {Zero} from 'tin-engine/geo/v2';
 
 const employeeFactor = .1;
 const damageIncrease = 100;
 
-export default class Room {
-	constructor(type, floor, entity) {
+export default class Room extends Entity {
+	constructor(pos, type, floor) {
+		super(pos);
+		this.add(new ImageEntity(Zero(), 'img/rooms/'+type+'.png'));
+
 		for(var i in rooms[type])
 			this[i] = rooms[type][i];
 
 		this.type = type;
 		this.floor = floor;
-		this.entity = entity;
 
 		this.kids = [];
 		this.damage = 0;

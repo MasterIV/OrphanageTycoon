@@ -35,7 +35,7 @@ export default class Kid extends Entity {
 	}
 
 	walkTo(room) {
-		const pos = room.entity.position;
+		const pos = room.position;
 		const index = room.use(this);
 		if(!index) return;
 

@@ -63,11 +63,12 @@ export default class Orphanage extends Entity {
 	addRoom( room, floor, direction ) {
 		if(this.isValid(room, floor, direction)) {
 			if(!this.floors[floor]) this.addFloor();
-			const img = new ImageEntity(this.getPosition(room, floor, direction), 'img/rooms/'+room+'.png');
+			const pos = this.getPosition(room, floor, direction);
 			const price = rooms[room].price + floorPrice * floor;
+			const entity = new Room(pos, room, floor);
 
-			this.add(img);
-			this.floors[floor][direction].push(new Room(room, floor, img));
+			this.add(entity);
+			this.floors[floor][direction].push(entity);
 			this.counts[room]++;
 			this.money -= price;
 		}
@@ -116,11 +117,9 @@ export default class Orphanage extends Entity {
 
 		this.forEach(r => {
 			if(r.type == room && r.employee && r.free()) {
-				const e = r.entity;
-
 				const dist = r.floor == floor
-					? Math.abs(e.position.x + e.width * 16 - child.position.x)
-					: Math.abs(e.position.x + e.width * 16 - 720) + 96 * Math.abs(r.floor - floor) + Math.abs(720 - child.position.x);
+					? Math.abs(r.position.x + r.width * 16 - child.position.x)
+					: Math.abs(r.position.x + r.width * 16 - 720) + 96 * Math.abs(r.floor - floor) + Math.abs(720 - child.position.x);
 
 				if(best === null || best > dist) {
 					best = dist;

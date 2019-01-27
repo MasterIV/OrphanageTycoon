@@ -109,7 +109,7 @@ export default class Kid extends Entity {
 				this.hunger += activities.eat.value;
 				break;
 			case 'play':
-				//this.happiness += activities.play.value;
+				this.happiness += activities.play.value;
 				break;
 			case 'learn':
 				this.education++;
@@ -125,7 +125,7 @@ export default class Kid extends Entity {
 			const donation = baseDonation + educationDonation * this.education;
 			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'adoption', child: this, donation: donation}}));
 			this.orphanage.money += donation;
-			this.remove();
+			this.parent.remove(this);
 		}
 	}
 
@@ -197,7 +197,7 @@ export default class Kid extends Entity {
 			// Kid ran away
 			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'run_away', child: this, fine: fine}}));
 			this.orphanage.money -= fine;
-			this.remove();
+			this.parent.remove(this);
 		}
 	}
 }

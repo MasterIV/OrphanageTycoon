@@ -1,13 +1,13 @@
 export default {
 	idle: {
-		happiness: .4
+		happiness: 1
 	},
 	learn: {
-		happiness: .8,
+		happiness: 2,
 		duration: 5000
 	},
 	walk: {
-		happiness: 0
+		happiness: .5
 	},
 	eat: {
 		happiness: 0,
@@ -15,7 +15,7 @@ export default {
 		value: 30
 	},
 	play: {
-		happiness: -2,
+		happiness: 0,
 		duration: 3000,
 		value: 30
 	},

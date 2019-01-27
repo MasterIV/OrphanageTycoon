@@ -51,7 +51,7 @@ export default class Staff extends Entity {
 		if(this.hired.includes(employee)) {
 			employee.room.employee = null;
 			employee.room = null;
-			employee.remove();
+			employee.parent.remove(employee);
 			arrayRemove(this.hired, employee);
 		}
 	}

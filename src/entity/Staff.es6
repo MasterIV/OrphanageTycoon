@@ -24,7 +24,7 @@ export default class Staff extends Entity {
 	canHire(employee) {
 		const current = this.hired.filter(e => e.type == employee.type).length;
 		const max = this.orphanage.counts[employee.type];
-		return current < max && this.orphanage.money > employee.salary;
+		return current < max && this.orphanage.money > employee.salary && this.available.includes(employee);
 	}
 
 	costs() {
@@ -48,10 +48,12 @@ export default class Staff extends Entity {
 	}
 
 	fire(employee) {
-		employee.room.employee = null;
-		employee.room = null;
-		employee.remove();
-		arrayRemove(this.hired, employee);
+		if(this.hired.includes(employee)) {
+			employee.room.employee = null;
+			employee.room = null;
+			employee.remove();
+			arrayRemove(this.hired, employee);
+		}
 	}
 
 	update(delta) {

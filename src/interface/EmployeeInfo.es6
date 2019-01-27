@@ -28,19 +28,51 @@ export default class EmployeeInfo extends Entity {
 		this.add(this.type);
 		this.add(this.level);
 		this.add(this.salary);
-		this.hireButton = Button.create(new V2(444, 2), () => this.staff.hire(this.curEmployee)).img('img/ui/hirebutton.png');
-		this.fireButton = Button.create(new V2(496, 2), () => this.staff.fire(this.curEmployee)).img('img/ui/firebutton.png');
+		this.hireBlocked = false;
+		this.fireBlocked = false;
+		this.jobStatusChanged = false;
+		this.hireButton = Button.create(new V2(444, 2), () => this.hire()).img('img/ui/hirebutton.png');
+		this.fireButton = Button.create(new V2(496, 2), () => this.fire()).img('img/ui/firebutton.png');
 		
 		this.add(this.hireButton);
 		this.add(this.fireButton);
 		this.curEmployee = null;
 	}
 	
+	hire() {
+		if(!this.hireBlocked) {
+			this.hireBlocked = true;
+			this.staff.hire(this.curEmployee);
+			this.hireBlocked = false;
+			this.jobStatusChanged = true;
+		}
+	}
+	
+	fire() {
+		if(!this.fireBlocked) {
+			this.fireBlocked = true;
+			this.staff.fire(this.curEmployee);
+			this.fireBlocked = false;
+			this.jobStatusChanged = true;
+		}
+	}
+	
 	setEmployee(employee, hirable) {
 		if(employee != null) {
+			if(this.jobStatusChanged) {
+				if(hirable) {
+					this.hireButton.visible = true;
+					this.fireButton.visible = false;
+				}
+				else {
+					this.hireButton.visible = false;				
+					this.fireButton.visible = true;
+				}
+				this.jobStatusChanged = false;
+			}
 			if(this.staff.canHire(employee)) {
 					this.hireButton.img('img/ui/hirebutton.png');
-				} else {
+			} else {
 					this.hireButton.img('img/ui/hirebuttonfaded.png');
 			}
 			if(!(this.curEmployee === employee)) {

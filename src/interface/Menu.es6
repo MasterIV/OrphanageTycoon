@@ -15,6 +15,8 @@ graphics.add('img/ui/employeemenubutton.png');
 graphics.add('img/ui/kidsmenubutton.png');
 graphics.add('img/ui/notificationmenubutton.png');
 graphics.add('img/ui/menubg.png');
+graphics.add('img/ui/upbutton.png');
+graphics.add('img/ui/downbutton.png');
 
 export default class Menu extends Entity {
 	constructor() {

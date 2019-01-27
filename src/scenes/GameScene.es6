@@ -13,7 +13,7 @@ import EmployeeMenu from './../interface/EmployeeMenu';
 import NotificationMenu from './../interface/NotificationMenu';
 import ImageEntity from 'tin-engine/basic/image';
 
-const monthEnd = 90000;
+const monthEnd = 70000;
 const orpandMoney = 50;
 
 export default class GameScene extends Scene {

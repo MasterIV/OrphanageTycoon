@@ -14,7 +14,7 @@ export default class Employee extends Entity {
 		this.gender = index % 2;
 
 		this.type = type || ['kitchen', 'janitor', 'classroom'][(Math.random()*3)|0];
-		this.level = 1+(Math.random()*max)|0;
+		this.level = 1+Math.round(Math.random()*max);
 		this.salary = 30 + this.level * 5;
 		this.idle = 0;
 		this.duration = 0;

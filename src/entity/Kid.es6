@@ -1,5 +1,4 @@
 import Entity from 'tin-engine/basic/entity';
-import rooms from '../config/rooms';
 import RectEntity from 'tin-engine/basic/rect';
 import V2, { Zero } from 'tin-engine/geo/v2';
 import names from '../config/names';
@@ -10,9 +9,9 @@ const sleepCooldown = 20;
 const speed = 100;
 const floorOffset = 58;
 
-const fine = 500;
+const fine = 300;
 const baseDonation = 100;
-const educationDonation = 15;
+const educationDonation = 20;
 
 export default class Kid extends Entity {
 	constructor(orphanage) {
@@ -122,7 +121,6 @@ export default class Kid extends Entity {
 		// See if you get adopted!
 		const chance = this.education / 200 + this.happiness / 5000;
 		if(Math.random() < chance) {
-			console.log('adoption', this);
 			const donation = baseDonation + educationDonation * this.education;
 			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'adoption', child: this, donation: donation}}));
 			this.orphanage.money += donation;

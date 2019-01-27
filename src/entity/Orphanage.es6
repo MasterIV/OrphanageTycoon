@@ -3,6 +3,7 @@ import rooms from '../config/rooms';
 import ImageEntity from 'tin-engine/basic/image';
 import V2, {Zero} from 'tin-engine/geo/v2';
 import Room from './Room';
+import sound from 'tin-engine/core/sound';
 
 const maxSize = 20;
 const stairsX = 688;
@@ -23,8 +24,8 @@ export default class Orphanage extends Entity {
 			this.counts[i] = 0;
 
 		this.addFloor();
-		this.addRoom('kitchen', 0, 'left');
-		this.addRoom('dorm', 0, 'right');
+		this.addRoom('kitchen', 0, 'left', 1);
+		this.addRoom('dorm', 0, 'right', 1);
 	}
 
 	calcWidth(floor) {
@@ -60,8 +61,9 @@ export default class Orphanage extends Entity {
 		this.floors.push({left:[], right:[]});
 	}
 
-	addRoom( room, floor, direction ) {
+	addRoom( room, floor, direction, silent ) {
 		if(this.isValid(room, floor, direction)) {
+			if(!silent) sound.play('sound/build.mp3');
 			if(!this.floors[floor]) this.addFloor();
 			const pos = this.getPosition(room, floor, direction);
 			const price = rooms[room].price + floorPrice * floor;

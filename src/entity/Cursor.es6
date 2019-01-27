@@ -2,6 +2,7 @@ import Entity from 'tin-engine/basic/entity';
 import rooms from '../config/rooms';
 import ImageEntity from 'tin-engine/basic/image';
 import V2, {Zero} from 'tin-engine/geo/v2';
+import sound from 'tin-engine/core/sound';
 
 export default class Cursor extends Entity {
 	constructor(orphanage) {
@@ -11,6 +12,7 @@ export default class Cursor extends Entity {
 	}
 
 	select(room) {
+		sound.play('sound/click.mp3');
 		this.selected = room;
 		this.floor = 0;
 		this.direction = null;

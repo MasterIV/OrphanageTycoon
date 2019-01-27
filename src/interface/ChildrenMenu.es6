@@ -6,6 +6,7 @@ import {VerticalLayout} from 'tin-engine/basic/layout';
 import ChildInfo from './ChildInfo';
 import Kid from './../entity/Kid';
 import config from './../config/config';
+import sound from 'tin-engine/core/sound';
 
 
 
@@ -36,10 +37,12 @@ export default class ChildrenMenu extends Entity {
 	}
 	
 	scrollUp() {
+		sound.play('sound/click.mp3');
 		this.scrollOffset = Math.max(0, this.scrollOffset - 1);
 	}
 	
 	scrollDown() {
+		sound.play('sound/click.mp3');
 		this.scrollOffset = Math.min(this.children.entities.length - 1, this.scrollOffset + 1);
 	}
 }

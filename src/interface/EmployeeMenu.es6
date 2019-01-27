@@ -4,6 +4,7 @@ import Button from 'tin-engine/basic/button';
 import EmployeeInfo from './EmployeeInfo';
 import {arrayRemove} from 'tin-engine/util';
 import config from './../config/config';
+import sound from 'tin-engine/core/sound';
 
 
 export default class EmployeeMenu extends Entity {
@@ -34,10 +35,12 @@ export default class EmployeeMenu extends Entity {
 	}
 	
 	scrollUp() {
+		sound.play('sound/click.mp3');
 		this.scrollOffset = Math.max(0, this.scrollOffset - 1);
 	}
 	
 	scrollDown() {
+		sound.play('sound/click.mp3');
 		this.scrollOffset = Math.min(this.staff.available.length + this.staff.hired.length - 1, this.scrollOffset + 1);
 	}
 }

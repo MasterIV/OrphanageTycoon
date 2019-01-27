@@ -1,14 +1,11 @@
-import V2, {Zero} from 'tin-engine/geo/v2';
-import Entity from 'tin-engine/basic/entity'
+import V2, { Zero } from 'tin-engine/geo/v2';
+import Entity from 'tin-engine/basic/entity';
 import config from '../config/config';
-import BuildMenu from './../interface/BuildMenu';
-import ChildrenMenu from './../interface/ChildrenMenu';
-import EmployeeMenu from './../interface/EmployeeMenu';
-import NotificationMenu from './../interface/NotificationMenu';
 import Button from 'tin-engine/basic/button';
 import ImageEntity from 'tin-engine/basic/image';
-import {VerticalLayout} from 'tin-engine/basic/layout';
+import { VerticalLayout } from 'tin-engine/basic/layout';
 import graphics from 'tin-engine/core/graphic';
+import sound from 'tin-engine/core/sound';
 
 graphics.add('img/ui/buildmenubutton.png');
 graphics.add('img/ui/employeemenubutton.png');
@@ -57,6 +54,7 @@ export default class Menu extends Entity {
 	}
 	
 	switchMenu(index) {
+		sound.play('sound/click.mp3');
 		this.entities.pop();
 		switch(index) {
 			case 0:

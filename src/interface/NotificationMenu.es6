@@ -5,6 +5,7 @@ import {VerticalLayout} from 'tin-engine/basic/layout';
 import FontStyle from 'tin-engine/definition/font';
 import Notification from './Notification';
 import config from './../config/config';
+import sound from 'tin-engine/core/sound';
 
 export default class NotificationMenu extends Entity {
 	constructor() {
@@ -55,11 +56,13 @@ export default class NotificationMenu extends Entity {
 	}
 	
 	scrollUp() {
+		sound.play('sound/click.mp3');
 		this.scrollOffset = Math.min(this.notifications.length, this.scrollOffset + 1);
 		this.updateText();
 	}
 	
 	scrollDown() {
+		sound.play('sound/click.mp3');
 		this.scrollOffset = Math.max(2, this.scrollOffset - 1);
 		this.updateText();
 	}

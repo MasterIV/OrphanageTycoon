@@ -12,7 +12,7 @@ const speed = 100;
 const floorOffset = 58;
 
 const fine = 300;
-const baseDonation = 100;
+const baseDonation = 160;
 const educationDonation = 20;
 
 graphics.add('img/animation/adoption.png');

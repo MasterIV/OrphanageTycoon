@@ -14,7 +14,7 @@ import NotificationMenu from './../interface/NotificationMenu';
 import ImageEntity from 'tin-engine/basic/image';
 
 const monthEnd = 70000;
-const orpandMoney = 50;
+const orpandMoney = 80;
 
 export default class GameScene extends Scene {
 	constructor() {

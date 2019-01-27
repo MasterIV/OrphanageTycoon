@@ -50,4 +50,12 @@ export default class Room extends Entity {
 				this.kids[i] = null;
 		child.room = null;
 	}
+
+	postDraw(ctx) {
+		ctx.fillStyle = "red";
+		ctx.strokeStyle = "black";
+		ctx.font = "14px monospace";
+		ctx.strokeText(this.damage, 10, 20);
+		ctx.fillText(this.damage, 10, 20);
+	}
 }

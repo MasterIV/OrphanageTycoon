@@ -8,7 +8,7 @@ import activities from '../config/activities';
 const hungerRate = 0.5;
 const sleepCooldown = 5;
 const speed = 100;
-const floorOffset = 64;
+const floorOffset = 58;
 const fine = 200;
 
 export default class Kid extends Entity {

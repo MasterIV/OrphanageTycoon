@@ -3,7 +3,7 @@ import V2, { Zero } from 'tin-engine/geo/v2';
 import RectEntity from 'tin-engine/basic/rect';
 
 const cooldown = 2700;
-const floorOffset = 32;
+const floorOffset = 26;
 
 export default class Employee extends Entity {
 	constructor(max, type) {
@@ -32,6 +32,7 @@ export default class Employee extends Entity {
 		if(this.type == 'janitor') {
 			this.duration -= delta;
 			if(this.duration <= 0) {
+				this.room.damage++;
 				this.room.parent.repair();
 				this.duration = this.room.duration();
 			}

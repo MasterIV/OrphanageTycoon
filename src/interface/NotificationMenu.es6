@@ -15,7 +15,7 @@ export default class NotificationMenu extends Entity {
 		this.notifications = [];
 		this.notificationDisplays = [];
 		for(var i = 0; i < 6; i++) {
-			const notification = new Notification(new V2(592 / 2 - 32, i * 20 + 15), this.notificationFont);
+			const notification = new Notification(new V2(6, i * 20 + 4), this.notificationFont);
 			this.notificationDisplays.push(notification);
 			this.add(notification);
 		}
@@ -52,7 +52,7 @@ export default class NotificationMenu extends Entity {
 	
 	updateText() {
 		for(var i = 0; i < 6; i++) {
-			this.notificationDisplays[i].text(((this.scrollOffset - i - 1) <= 0) ? '' : this.notifications[this.scrollOffset - i - 1]);
+			this.notificationDisplays[i].text(((this.scrollOffset - i - 1) <= 0) ? '' : this.notifications[this.scrollOffset - i - 1], this.scrollOffset - i - 1);
 		}
 	}
 	

@@ -14,11 +14,12 @@ export default class BuildMenu extends Entity {
 		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
 		this.font = new FontStyle(15, 'white');
 		this.cursor = cursor;
+
 		var buttonLayout = new HorizontalLayout(new V2(0, 14), 0, 16);
 		for(var r in rooms) {
 			const room = r;
 			//buttonLayout.add(BuildRoomButton.create(Zero(), () => alert('Build ' + r)).img('img/rooms/' + r + '.png', 72.0 / (rooms[r].width * 32.0)));
-			buttonLayout.add(BuildRoomButton.create(Zero(), () => this.cursor.select(room), this.font).img('img/rooms/' + r + '.png', 90.0 / (7 * 32.0)).type(r));
+			buttonLayout.add(BuildRoomButton.create(Zero(), () => this.cursor.select(room), this.font, this.cursor.orphanage).img('img/rooms/' + r + '.png', 90.0 / (7 * 32.0)).type(r));
 		}
 
 		this.center(buttonLayout);

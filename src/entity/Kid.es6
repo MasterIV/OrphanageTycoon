@@ -9,6 +9,7 @@ const hungerRate = 0.5;
 const sleepCooldown = 5;
 const speed = 100;
 const floorOffset = 64;
+const fine = 200;
 
 export default class Kid extends Entity {
 	constructor(orphanage) {
@@ -181,9 +182,10 @@ export default class Kid extends Entity {
 		this.updateActivity(delta);
 
 		if(this.happiness < 1) {
-			// run away
+			// Kid ran away
+			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'run_away', child: this, fine: fine}}));
+			this.orphanage.money -= fine;
+			this.remove();
 		}
-
-
 	}
 }

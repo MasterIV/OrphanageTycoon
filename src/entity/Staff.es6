@@ -4,11 +4,14 @@ import V2, {Zero} from 'tin-engine/geo/v2';
 import {arrayRemove} from 'tin-engine/util';
 import Employee from './Employee';
 
+const cooldown = 1000;
+
 export default class Staff extends Entity {
 
 	constructor(orphanage) {
 		super();
 
+		this.timer = 0;
 		this.orphanage = orphanage;
 		this.available = [];
 		this.hired = [];
@@ -30,6 +33,7 @@ export default class Staff extends Entity {
 
 			const room = this.orphanage.findFree(employee.type);
 			employee.work(room);
+			this.orphanage.money -= employee.salary;
 
 			if(this.available.indexOf(employee) > -1)
 				arrayRemove(this.available, employee);
@@ -41,5 +45,27 @@ export default class Staff extends Entity {
 		employee.room = null;
 		employee.remove();
 		arrayRemove(this.hired, employee);
+	}
+
+	update(delta) {
+		this.timer += delta;
+		if(this.timer > cooldown) {
+			this.timer = 0;
+
+			for(var i in this.available ) {
+				const e = this.available[i];
+				e.idle++;
+
+				if(Math.random() < e.idle/500)
+					arrayRemove(this.available, e);
+			}
+
+			if(Math.random() < .5 / this.available.length) {
+				let rooms = 0;
+				for(var i in this.orphanage.counts)
+					rooms += this.orphanage.counts[i];
+				this.available.push(new Employee(Math.min(10, Math.round(rooms/ 10))));
+			}
+		}
 	}
 }

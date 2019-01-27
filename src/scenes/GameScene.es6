@@ -14,15 +14,17 @@ export default class GameScene extends Scene {
 		this.setSize(config.screen.w, config.screen.h);
 		this.bg = 'img/ui/gamebg.png';
 		this.supressClick = false;
+		this.timer = 0;
 
-		const orphanage = new Orphanage();
-		const cursor = new Cursor(orphanage);
-		const staff = new Staff(orphanage);
-		const viewport = new Viewport(orphanage);
-		const children = new Children(orphanage);
+		this.orphanage = new Orphanage();
+		this.staff = new Staff(this.orphanage);
+		this.children = new Children(this.orphanage);
+
+		const cursor = new Cursor(this.orphanage);
+		const viewport = new Viewport(this.orphanage);
 		viewport.add(cursor);
-		viewport.add(staff);
-		viewport.add(children);
+		viewport.add(this.staff);
+		viewport.add(this.children);
 
 		this.add(viewport);
 		this.add(new Menu(cursor));
@@ -34,5 +36,20 @@ export default class GameScene extends Scene {
 		} else {
 			super.click(pos);
 		}
+	}
+
+	onDraw(ctx) {
+		super.onDraw(ctx);
+		const text = 'Beds: ' + this.children.info() + ', Money: ' + this.orphanage.money + '$';
+
+		ctx.fillStyle = "black";
+		ctx.strokeStyle = "#BBB";
+		ctx.font = "16px monospace";
+		ctx.strokeText(text, 630 - text.length * 10, 25);
+		ctx.fillText(text, 630 - text.length * 10, 25);
+	}
+
+	onUpdate(delta) {
+
 	}
 }

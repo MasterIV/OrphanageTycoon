@@ -6,6 +6,7 @@ import Room from './Room';
 
 const maxSize = 20;
 const stairsX = 688;
+const floorPrice = 20;
 
 function calcWidth(floor) {
 	return floor.reduce((a,b) => ({width: a.width+b.width}), {width: 0}).width;
@@ -34,9 +35,12 @@ export default class Orphanage extends Entity {
 	}
 
 	isValid(room, floor, direction) {
+		const price = rooms[room].price + floorPrice * floor;
+
 		if(!rooms[room])
 			return false;
-
+		if(this.money < price)
+			return false;
 		if(!this.floors[floor] && !this.floors[floor - 1])
 			return false; // Skipping a floor here !?!
 
@@ -59,10 +63,13 @@ export default class Orphanage extends Entity {
 	addRoom( room, floor, direction ) {
 		if(this.isValid(room, floor, direction)) {
 			if(!this.floors[floor]) this.addFloor();
-			const img = new ImageEntity(this.getPosition(room, floor, direction), 'img/rooms/'+room+'.png')
+			const img = new ImageEntity(this.getPosition(room, floor, direction), 'img/rooms/'+room+'.png');
+			const price = rooms[room].price + floorPrice * floor;
+
 			this.add(img);
 			this.floors[floor][direction].push(new Room(room, floor, img));
 			this.counts[room]++;
+			this.money -= price;
 		}
 	}
 

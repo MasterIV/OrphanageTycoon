@@ -17,7 +17,7 @@ export default class Orphanage extends Entity {
 		super();
 		this.floors = [];
 
-		this.money = 500;
+		this.money = 2500;
 		this.counts = {};
 		for(var i in rooms)
 			this.counts[i] = 0;
@@ -97,6 +97,16 @@ export default class Orphanage extends Entity {
 		});
 
 		return result;
+	}
+
+	repair() {
+		let room = null;
+
+		this.forEach(r => {
+			if(!room || r.damage >= room.damage) room = r;
+		});
+
+		room.damage = 0;
 	}
 
 	findClosest(child, room) {

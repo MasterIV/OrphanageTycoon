@@ -29,9 +29,7 @@ export default class Staff extends Entity {
 			this.hired.push(employee);
 
 			const room = this.orphanage.findFree(employee.type);
-			room.entity.add(employee);
-			room.employee = employee;
-			employee.room = room;
+			employee.work(room);
 
 			if(this.available.indexOf(employee) > -1)
 				arrayRemove(this.available, employee);

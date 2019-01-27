@@ -21,9 +21,9 @@ export default class GameScene extends Scene {
 		const viewport = new Viewport(orphanage);
 		const children = new Children(orphanage);
 		viewport.add(cursor);
+		viewport.add(staff);
 		viewport.add(children);
 
-		this.add(staff);
 		this.add(viewport);
 		this.add(new Menu(cursor));
 	}

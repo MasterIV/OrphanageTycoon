@@ -47,7 +47,7 @@ export default class Kid extends Entity {
 
 		const rand = Math.round(Math.random())+1;
 		const url = 'img/animation/' + genders[this.gender] + rand + '.png';
-		this.img = new Animation(url, Zero(), new V2(8, 6), 120, true);
+		this.img = new Animation(url, Zero(), new V2(8, 6), 160, true);
 
 		this.add(this.img);
 	}

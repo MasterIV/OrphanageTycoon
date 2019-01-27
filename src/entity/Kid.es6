@@ -66,7 +66,7 @@ export default class Kid extends Entity {
 			- delta * hungerRate * hungerFactor));
 		this.happiness = Math.max(0, Math.min(100, this.happiness
 			- delta * activities[this.activity].happiness
-			+ happinessLoss));
+			- happinessLoss));
 	}
 
 	floor() {

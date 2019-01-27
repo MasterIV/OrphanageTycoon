@@ -10,6 +10,8 @@ const sleepCooldown = 5;
 const speed = 100;
 const floorOffset = 58;
 const fine = 200;
+const baseDonation = 100;
+const educationDonation = 20;
 
 export default class Kid extends Entity {
 	constructor(orphanage) {
@@ -42,7 +44,7 @@ export default class Kid extends Entity {
 		this.destination = new V2(pos.x + index * 48 - 40, pos.y + floorOffset);
 		this.activity = 'walk';
 
-		console.log(this.name + ' want\'s to ' + room.activity, this);
+		//console.log(this.name + ' want\'s to ' + room.activity, this);
 	}
 
 	updateStats(delta) {
@@ -114,6 +116,16 @@ export default class Kid extends Entity {
 				break;
 			case 'sleep':
 				this.sleep = 0;
+		}
+
+		// See if you get adopted!
+		const chance = this.education / 100 + this.happiness / 5000;
+		if(Math.random() < chance) {
+			console.log('adoption', this);
+			const donation = baseDonation + educationDonation * this.education;
+			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'adoption', child: this, donation: donation}}));
+			this.orphanage.money += donation;
+			this.remove();
 		}
 	}
 

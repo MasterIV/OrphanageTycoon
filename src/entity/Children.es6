@@ -20,7 +20,7 @@ export default class Children extends Entity {
 	}
 
 	addChild() {
-		const kid = new Kid();
+		const kid = new Kid(this.orphanage);
 		this.add(kid);
 		window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'new_child', child: kid}}));
 	}

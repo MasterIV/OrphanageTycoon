@@ -2,7 +2,7 @@ import Entity from 'tin-engine/basic/entity';
 import rooms from '../config/rooms';
 import ImageEntity from 'tin-engine/basic/image';
 import V2, {Zero} from 'tin-engine/geo/v2';
-
+import Room from './Room';
 
 const maxSize = 20;
 const stairsX = 688;
@@ -54,7 +54,7 @@ export default class Orphanage extends Entity {
 			if(!this.floors[floor]) this.addFloor();
 			const img = new ImageEntity(this.getPosition(room, floor, direction), 'img/rooms/'+room+'.png')
 			this.add(img);
-			this.floors[floor][direction].push({...rooms[room], employee: null, entity: img, type: room});
+			this.floors[floor][direction].push(new Room(room, floor, img));
 			this.counts[room]++;
 		}
 	}
@@ -78,8 +78,31 @@ export default class Orphanage extends Entity {
 		let result = null;
 
 		this.forEach(r => {
-			if(r.type == room.type && !r.employee)
+			if(r.type == room && !r.employee)
 				result = r;
+		});
+
+		return result;
+	}
+
+	findClosest(child, room) {
+		const floor = Math.abs(child.position.y / 96) | 0;
+		let best = null;
+		let result = null;
+
+		this.forEach(r => {
+			if(r.type == room && r.employee && r.free()) {
+				const e = r.entity;
+
+				const dist = r.floor == floor
+					? Math.abs(e.position.x + e.width * 16 - child.position.x)
+					: Math.abs(e.position.x + e.width * 16 - 720) + 96 + Math.abs(720 - child.position.x);
+
+				if(best === null || best > dist) {
+					best = dist;
+					result = r;
+				}
+			}
 		});
 
 		return result;

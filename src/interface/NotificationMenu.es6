@@ -29,7 +29,6 @@ export default class NotificationMenu extends Entity {
 	}
 	
 	addNotification(e) {
-		console.log(e.detail);
 		if(e.detail.type == 'new_child') {
 			this.notifications.push(e.detail.child.name + notificationMessages[e.detail.type][(Math.random() * notificationMessages[e.detail.type].length) | 0]);
 			this.scrollOffset++;

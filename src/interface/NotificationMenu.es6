@@ -35,8 +35,8 @@ export default class NotificationMenu extends Entity {
 			this.notifications.push(e.detail.child.name + ' has been adopted.');
 			this.scrollOffset++;
 		}
-		else if(e.detail.type == 'runaway') {
-			this.notifications.push(e.detail.child.name + ' has run away.');
+		else if(e.detail.type == 'run_away') {
+			this.notifications.push(e.detail.child.name + ' has run away. You have been fined $' + e.detail.fine);
 			this.scrollOffset++;	
 		}
 		else if(e.detail.type == 'month_end') {

@@ -3,6 +3,8 @@ import RectEntity from 'tin-engine/basic/rect';
 import V2, { Zero } from 'tin-engine/geo/v2';
 import names from '../config/names';
 import activities from '../config/activities';
+import graphics from 'tin-engine/core/graphic';
+import Animation from 'tin-engine/lib/animation';
 
 const hungerRate = 1.5;
 const sleepCooldown = 20;
@@ -12,6 +14,8 @@ const floorOffset = 58;
 const fine = 300;
 const baseDonation = 100;
 const educationDonation = 20;
+
+graphics.add('img/animation/adoption.png');
 
 export default class Kid extends Entity {
 	constructor(orphanage) {
@@ -119,12 +123,13 @@ export default class Kid extends Entity {
 		}
 
 		// See if you get adopted!
-		const chance = this.education / 200 + this.happiness / 5000;
+		const chance = 1; //this.education / 200 + this.happiness / 5000;
 		if(Math.random() < chance) {
 			const donation = baseDonation + educationDonation * this.education;
 			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'adoption', child: this, donation: donation}}));
 			this.orphanage.money += donation;
 			this.parent.remove(this);
+			this.parent.add(new Animation('img/animation/adoption.png', this.position.dif(new V2(48,64)), 10, 150));
 		}
 	}
 

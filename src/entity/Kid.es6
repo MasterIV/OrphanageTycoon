@@ -55,10 +55,10 @@ export default class Kid extends Entity {
 
 		if (this.hunger < 20) {
 			hungerFactor = .25;
-			happinessLoss = 1;
+			happinessLoss = 2;
 		} else if (this.hunger < 40) {
 			hungerFactor = .5;
-			happinessLoss = .5;
+			happinessLoss = 1;
 		}
 
 		this.sleep += delta;
@@ -109,7 +109,7 @@ export default class Kid extends Entity {
 				this.hunger += activities.eat.value;
 				break;
 			case 'play':
-				this.happiness += activities.play.value;
+				//this.happiness += activities.play.value;
 				break;
 			case 'learn':
 				this.education++;

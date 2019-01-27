@@ -1,9 +1,9 @@
 export default {
 	idle: {
-		happiness: .2
+		happiness: .4
 	},
 	learn: {
-		happiness: .4,
+		happiness: .8,
 		duration: 5000
 	},
 	walk: {
@@ -15,7 +15,7 @@ export default {
 		value: 30
 	},
 	play: {
-		happiness: -1,
+		happiness: -2,
 		duration: 3000,
 		value: 30
 	},

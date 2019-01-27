@@ -6,12 +6,13 @@ import graphics from 'tin-engine/core/graphic';
 import FontStyle from 'tin-engine/definition/font';
 
 graphics.add('img/ui/bar_children.png');
+graphics.add('img/ui/bar_childrenfaded.png');
 graphics.add('img/ui/progressbar.png');
 
 export default class ChildInfo extends Entity {
 	constructor(pos) {
 		super(pos, new V2(592, 20));
-		this.add(new ImageEntity(Zero(), 'img/ui/bar_children.png'));
+		this.add(new ImageEntity(Zero(), 'img/ui/bar_childrenfaded.png'));
 		this.font = new FontStyle(18, 'white');
 		this.nameFont = new FontStyle(16, 'white');
 		
@@ -33,12 +34,14 @@ export default class ChildInfo extends Entity {
 	setChild(child) {
 		this.child = child;
 		if(child === null) {
+			this.entities[0].img = graphics['img/ui/bar_childrenfaded.png'];
 			this.name.text = '';
 			this.happiness.size.x = 0;
 			this.hunger.size.x = 0;
 			this.education.text = '';
 			//this.gender.text = this.child.gender;
 		} else {
+			this.entities[0].img = graphics['img/ui/bar_children.png'];
 			this.name.text = this.child.name;
 			this.happiness.size.x = (this.child.happiness / 100.0 * 145) | 0;
 			this.hunger.size.x = (this.child.hunger / 100.0 * 145) | 0;

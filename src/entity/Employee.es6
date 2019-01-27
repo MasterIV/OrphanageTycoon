@@ -1,6 +1,7 @@
 import Entity from 'tin-engine/basic/entity';
 import V2, { Zero } from 'tin-engine/geo/v2';
 import RectEntity from 'tin-engine/basic/rect';
+import names from '../config/names';
 
 const cooldown = 2700;
 const floorOffset = 26;
@@ -8,6 +9,10 @@ const floorOffset = 26;
 export default class Employee extends Entity {
 	constructor(max, type) {
 		super();
+
+		const index = (Math.random() * names.length) | 0;
+		this.name = names[index];
+		this.gender = index % 2;
 
 		this.type = type || ['kitchen', 'janitor', 'classroom'][(Math.random()*3)|0];
 		this.level = 1+(Math.random()*max)|0;

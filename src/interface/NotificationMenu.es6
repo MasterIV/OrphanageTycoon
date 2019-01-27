@@ -47,6 +47,7 @@ export default class NotificationMenu extends Entity {
 			this.scrollOffset += 2;
 		}
 
+		sound.play('sound/notification.mp3');
 		this.updateText();
 	}
 	

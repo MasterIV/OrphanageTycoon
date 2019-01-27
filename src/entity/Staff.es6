@@ -27,6 +27,13 @@ export default class Staff extends Entity {
 		return current < max && this.orphanage.money > employee.salary;
 	}
 
+	costs() {
+		let r = 0;
+		for(var i in this.hired)
+			r += this.hired[i].salary;
+		return r;
+	}
+
 	hire(employee) {
 		if(this.canHire(employee)) {
 			this.hired.push(employee);

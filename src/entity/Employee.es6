@@ -26,4 +26,10 @@ export default class Employee extends Entity {
 		this.position = new V2( room.width*32 - 48, floorOffset);
 		this.room.entity.add(this);
 	}
+
+	onUpdate(delta) {
+		if(this.type == 'janitor') {
+
+		}
+	}
 }

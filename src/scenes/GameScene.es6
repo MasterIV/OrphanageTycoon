@@ -8,6 +8,9 @@ import Cursor from '../entity/Cursor';
 import Staff from '../entity/Staff';
 import Children from '../entity/Children';
 
+const monthEnd = 30000;
+const orpandMoney = 200;
+
 export default class GameScene extends Scene {
 	constructor() {
 		super();
@@ -50,6 +53,14 @@ export default class GameScene extends Scene {
 	}
 
 	onUpdate(delta) {
-
+		this.timer += delta;
+		if(this.timer >= monthEnd) {
+			this.timer = 0;
+			const income = this.children.entities.length * orpandMoney;
+			const expenses = this.staff.costs();
+			
+			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'month_end', income: income, expenses: expenses}}));
+			this.orphanage.money += income - expenses;
+		}
 	}
 }

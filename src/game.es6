@@ -15,6 +15,7 @@ window.onload = () => {
 
 	graphics.add('img/rooms/stairs.png');
 	graphics.add('img/ui/gamebg.png');
+	graphics.add('img/floor.png');
 
 	graphics.load(() => {
 		document.getElementById('loading').style.display = 'none';

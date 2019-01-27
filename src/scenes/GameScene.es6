@@ -11,9 +11,11 @@ import BuildMenu from './../interface/BuildMenu';
 import ChildrenMenu from './../interface/ChildrenMenu';
 import EmployeeMenu from './../interface/EmployeeMenu';
 import NotificationMenu from './../interface/NotificationMenu';
+import ImageEntity from 'tin-engine/basic/image';
 
 const monthEnd = 30000;
 const orpandMoney = 200;
+
 
 export default class GameScene extends Scene {
 	constructor() {
@@ -29,6 +31,7 @@ export default class GameScene extends Scene {
 
 		const cursor = new Cursor(this.orphanage);
 		const viewport = new Viewport(this.orphanage);
+		viewport.add(new ImageEntity(Zero(), 'img/floor.png'));
 		viewport.add(cursor);
 		viewport.add(this.staff);
 		viewport.add(this.children);

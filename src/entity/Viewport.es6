@@ -1,7 +1,7 @@
 import BaseViewport from 'tin-engine/lib/viewport';
 import V2 from 'tin-engine/geo/v2';
 
-const maxY = 340;
+const maxY = 330;
 
 export default class Viewport extends BaseViewport {
 	constructor(orphanage) {

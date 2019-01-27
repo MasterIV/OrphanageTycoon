@@ -6,15 +6,16 @@ import FontStyle from 'tin-engine/definition/font';
 import Notification from './Notification';
 import config from './../config/config';
 import sound from 'tin-engine/core/sound';
+import notificationMessages from './../config/notifications';
 
 export default class NotificationMenu extends Entity {
 	constructor() {
 		super(new V2(48, 0), new V2(config.screen.w - 48, 128));
-		this.notificationFont = new FontStyle(18, 'white');
+		this.notificationFont = new FontStyle(16, 'white');
 		this.notifications = [];
 		this.notificationDisplays = [];
 		for(var i = 0; i < 6; i++) {
-			const notification = new Notification(new V2(592 / 2, i * 20 + 15), this.notificationFont);
+			const notification = new Notification(new V2(592 / 2 - 32, i * 20 + 15), this.notificationFont);
 			this.notificationDisplays.push(notification);
 			this.add(notification);
 		}
@@ -29,7 +30,7 @@ export default class NotificationMenu extends Entity {
 	
 	addNotification(e) {
 		if(e.detail.type == 'new_child') {
-			this.notifications.push(e.detail.child.name + ' appeared on your doorstep.');
+			this.notifications.push(e.detail.child.name + notificationMessages[e.detail.type][(Math.random() * notificationMessages[e.detail.type].length) | 0]);
 			this.scrollOffset++;
 		}
 		else if(e.detail.type == 'adoption') {
@@ -37,7 +38,7 @@ export default class NotificationMenu extends Entity {
 			this.scrollOffset++;
 		}
 		else if(e.detail.type == 'run_away') {
-			this.notifications.push(e.detail.child.name + ' has run away. You have been fined $' + e.detail.fine);
+			this.notifications.push(e.detail.child.name + notificationMessages[e.detail.type][(Math.random() * notificationMessages[e.detail.type].length) | 0] + ' You have been fined $' + e.detail.fine);
 			this.scrollOffset++;	
 		}
 		else if(e.detail.type == 'month_end') {

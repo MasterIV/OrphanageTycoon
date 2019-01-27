@@ -29,17 +29,22 @@ export default class NotificationMenu extends Entity {
 	addNotification(e) {
 		if(e.detail.type == 'new_child') {
 			this.notifications.push(e.detail.child.name + ' appeared on your doorstep.');
+			this.scrollOffset++;
 		}
 		else if(e.detail.type == 'adoption') {
 			this.notifications.push(e.detail.child.name + ' has been adopted.');
+			this.scrollOffset++;
 		}
 		else if(e.detail.type == 'runaway') {
 			this.notifications.push(e.detail.child.name + ' has run away.');
+			this.scrollOffset++;	
 		}
-		else if(e.detail.type == 'monthly') {
-			this.notifications.push('Monthly Report: The government sent you $' + 'this month');
+		else if(e.detail.type == 'month_end') {
+			this.notifications.push('$' + e.detail.expenses + ' was paid to your employees.');
+			this.notifications.push('Monthly Report: The government sent you $' + e.detail.income + ' this month.');
+			this.scrollOffset += 2;
 		}
-		this.scrollOffset++;
+
 		this.updateText();
 	}
 	

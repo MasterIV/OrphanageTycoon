@@ -22,5 +22,9 @@ export default {
 	sleep: {
 		happiness: 0,
 		duration: 8000
+	},
+	repair: {
+		happiness: 0,
+		duration: 8000
 	}
 };

@@ -21,7 +21,7 @@ graphics.add('img/ui/downbutton.png');
 export default class Menu extends Entity {
 	constructor() {
 		super(new V2(0, config.screen.h - 128), new V2(config.screen.w, 128));
-		this.add(new ImageEntity(Zero(), 'img/ui/menubg.png'));
+		this.add(new ImageEntity(new V2(48,0), 'img/ui/menubg.png'));
 		
 		this.buildMenu = null;
 		this.childrenMenu = null;

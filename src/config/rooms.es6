@@ -15,6 +15,7 @@ export default {
 	janitor: {
 		price: 300,
 		width: 4,
+		activity: 'repair',
 	},
 	playroom: {
 		price: 150,

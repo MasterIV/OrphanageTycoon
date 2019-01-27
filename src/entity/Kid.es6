@@ -225,6 +225,7 @@ export default class Kid extends Entity {
 			// Kid ran away
 			window.dispatchEvent(new CustomEvent('notification', {detail: {type: 'run_away', child: this, fine: fine}}));
 			this.orphanage.money -= fine;
+			this.room.leave(this);
 			this.parent.remove(this);
 		}
 	}

@@ -1,6 +1,6 @@
 export default {
 	idle: {
-		happiness: 1
+		happiness: .8
 	},
 	learn: {
 		happiness: 2,
@@ -8,7 +8,7 @@ export default {
 		samples: 3,
 	},
 	walk: {
-		happiness: .5
+		happiness: .2
 	},
 	eat: {
 		happiness: 0,

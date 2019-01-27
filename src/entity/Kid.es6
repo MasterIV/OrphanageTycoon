@@ -6,7 +6,7 @@ import graphics from 'tin-engine/core/graphic';
 import Animation from 'tin-engine/lib/animation';
 import sound from 'tin-engine/core/sound';
 
-const hungerRate = 1.5;
+const hungerRate = 1.2;
 const sleepCooldown = 20;
 const speed = 100;
 const floorOffset = 58;

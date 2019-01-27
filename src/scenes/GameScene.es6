@@ -7,6 +7,10 @@ import Orphanage from '../entity/Orphanage';
 import Cursor from '../entity/Cursor';
 import Staff from '../entity/Staff';
 import Children from '../entity/Children';
+import BuildMenu from './../interface/BuildMenu';
+import ChildrenMenu from './../interface/ChildrenMenu';
+import EmployeeMenu from './../interface/EmployeeMenu';
+import NotificationMenu from './../interface/NotificationMenu';
 
 const monthEnd = 30000;
 const orpandMoney = 200;
@@ -30,7 +34,17 @@ export default class GameScene extends Scene {
 		viewport.add(this.children);
 
 		this.add(viewport);
-		this.add(new Menu(cursor));
+		var buildMenu = new BuildMenu(cursor);
+		var childrenMenu = new ChildrenMenu(this.children);
+		var employeeMenu = new EmployeeMenu(this.staff);
+		var notificationMenu = new NotificationMenu();
+		var menu = new Menu();
+		menu.addMenu(buildMenu, 0);
+		menu.addMenu(childrenMenu, 1);
+		menu.addMenu(employeeMenu, 2);
+		menu.addMenu(notificationMenu, 3);
+		
+		this.add(menu);
 	}
 
 	click(pos) {

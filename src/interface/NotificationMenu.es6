@@ -4,10 +4,11 @@ import Button from 'tin-engine/basic/button';
 import {VerticalLayout} from 'tin-engine/basic/layout';
 import FontStyle from 'tin-engine/definition/font';
 import Notification from './Notification';
+import config from './../config/config';
 
 class NotificationDisplay extends Entity {
-	constructor(pos, size) {
-		super(pos, size);
+	constructor(pos) {
+		super(pos, new V2(config.screen.w - 48, 128));
 		this.notifications = [];
 		this.notificationOffset = 0;
 		this.scrollOffset = 0;
@@ -32,12 +33,12 @@ class NotificationDisplay extends Entity {
 }
 
 export default class NotificationMenu extends Entity {
-	constructor(pos, size) {
-		super(pos, size);
+	constructor() {
+		super(new V2(48, 0), new V2(config.screen.w - 48, 128));
 		this.notificationFont = new FontStyle(18, 'white');
 		//this.notifications = new VerticalLayout(new V2(592/2,12), 0, 0);
 		//this.add(this.notifications);
-		this.notifications = new NotificationDisplay(new V2(592/2, 0), size);
+		this.notifications = new NotificationDisplay(new V2(592/2, 0));
 		this.add(this.notifications);
 		this.addNotification = this.addNotification.bind(this);
 		window.addEventListener('notification', this.addNotification);

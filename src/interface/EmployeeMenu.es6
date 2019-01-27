@@ -6,6 +6,7 @@ import {VerticalLayout} from 'tin-engine/basic/layout';
 import EmployeeInfo from './EmployeeInfo';
 import Employee from './../entity/Employee';
 import {arrayRemove} from 'tin-engine/util';
+import config from './../config/config';
 
 class EmployeeList {
 	constructor(maxDisplayed, employeeDisplay) {
@@ -47,8 +48,8 @@ class EmployeeList {
 }
 
 export default class EmployeeMenu extends Entity {
-	constructor(pos, size) {
-		super(pos, size);
+	constructor() {
+		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
 		this.employeeDisplay = [];
 		for(var i = 0; i < 6; i++) {
 			const info = new EmployeeInfo(new V2(0, i * 20));

@@ -15,8 +15,13 @@ export default class EmployeeInfo extends Entity {
 	}
 	
 	setEmployee(employee) {
-		this.type.text = employee.type;
-		//this.name.text = employee.name;
-		this.level.text = employee.level;
+		if(employee != null) {
+			this.type.text = employee.type;
+			//this.name.text = employee.name;
+			this.level.text = employee.level;
+		}
+		else {
+			
+		}
 	}
 }

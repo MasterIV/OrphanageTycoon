@@ -17,15 +17,14 @@ graphics.add('img/ui/notificationmenubutton.png');
 graphics.add('img/ui/menubg.png');
 
 export default class Menu extends Entity {
-	constructor(cursor) {
+	constructor() {
 		super(new V2(0, config.screen.h - 128), new V2(config.screen.w, 128));
-		this.cursor = cursor;
 		this.add(new ImageEntity(Zero(), 'img/ui/menubg.png'));
 		
-		this.buildMenu = new BuildMenu(cursor, new V2(48, 0), new V2(this.size.x - 48, this.size.y));	//48 is the width of the menu buttons. Should probably grab the number from a config file instead of just hard coding it.
-		this.childrenMenu = new ChildrenMenu(new V2(48, 0), new V2(this.size.x - 48, this.size.y));
-		this.employeeMenu = new EmployeeMenu(new V2(48, 0), new V2(this.size.x - 48, this.size.y));
-		this.notificationMenu = new NotificationMenu(new V2(48, 0), new V2(this.size.x - 48, this.size.y));
+		this.buildMenu = null;
+		this.childrenMenu = null;
+		this.employeeMenu = null;
+		this.notificationMenu = null;
 		
 		var menuButtonLayout = new VerticalLayout(Zero(), 0, 0);
 
@@ -35,7 +34,24 @@ export default class Menu extends Entity {
 		menuButtonLayout.add(Button.create(Zero(), () => this.switchMenu(3)).img('img/ui/notificationmenubutton.png'));
 
 		this.add(menuButtonLayout);
-		this.add(this.buildMenu);
+	}
+	
+	addMenu(menu, index) {
+		switch(index) {
+			case 0:
+				this.buildMenu = menu;
+				this.add(this.buildMenu);
+			break;
+			case 1:
+				this.childrenMenu = menu;
+			break;
+			case 2:
+				this.employeeMenu = menu;
+			break;
+			case 3:
+				this.notificationMenu = menu;
+			break;
+		}
 	}
 	
 	switchMenu(index) {

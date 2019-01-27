@@ -6,10 +6,11 @@ import {HorizontalLayout} from 'tin-engine/basic/layout';
 import BuildRoomButton from './BuildRoomButton';
 
 import rooms from './../config/rooms';
+import config from './../config/config';
 
 export default class BuildMenu extends Entity {
-	constructor(cursor, pos, size) {
-		super(pos, size);
+	constructor(cursor) {
+		super(new V2(48, 0),  new V2(config.screen.w - 48, 128));
 		this.cursor = cursor;
 		var buttonLayout = new HorizontalLayout(new V2(0, 14), 0, 16);
 		for(var r in rooms) {

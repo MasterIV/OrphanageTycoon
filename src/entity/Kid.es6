@@ -1,10 +1,10 @@
 import Entity from 'tin-engine/basic/entity';
-import RectEntity from 'tin-engine/basic/rect';
 import V2, { Zero } from 'tin-engine/geo/v2';
 import names from '../config/names';
 import activities from '../config/activities';
 import graphics from 'tin-engine/core/graphic';
 import Animation from 'tin-engine/lib/animation';
+import sound from 'tin-engine/core/sound';
 
 const hungerRate = 1.5;
 const sleepCooldown = 20;
@@ -47,7 +47,7 @@ export default class Kid extends Entity {
 
 		const rand = Math.round(Math.random())+1;
 		const url = 'img/animation/' + genders[this.gender] + rand + '.png';
-		this.img = new Animation(url, Zero(), new V2(8, 6), 120, true);
+		this.img = new Animation(url, Zero(), new V2(8, 6), 160, true);
 
 		this.add(this.img);
 	}
@@ -59,6 +59,9 @@ export default class Kid extends Entity {
 
 		this.destination = new V2(pos.x + index * 48 - 40, pos.y + floorOffset);
 		this.activity = 'walk';
+
+		const rand = 1 + Math.floor(Math.random()*3);
+		sound.play('sound/activities/walk'+rand+'.mp3');
 
 		//console.log(this.name + ' want\'s to ' + room.activity, this);
 	}
@@ -164,6 +167,9 @@ export default class Kid extends Entity {
 				if(this.room) {
 					this.activity = this.room.activity;
 					this.duration = this.room.duration();
+
+					const rand = 1 + Math.floor(Math.random()*activities[this.activity].samples);
+					sound.play('sound/activities/'+this.activity+rand+'.mp3');
 				} else {
 					this.activity = 'idle';
 				}

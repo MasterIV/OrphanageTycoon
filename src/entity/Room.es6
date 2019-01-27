@@ -20,11 +20,10 @@ export default class Room extends Entity {
 
 		this.kids = [];
 		this.damage = 0;
-
 	}
 
 	duration() {
-		const factor = this.employee.level ? 1 - (this.employee.level - 1) * employeeFactor : 1;
+		const factor = this.employee && this.employee.level ? 1 - (this.employee.level - 1) * employeeFactor : 1;
 		return ( activities[this.activity].duration + this.damage * damageIncrease ) * factor;
 	}
 

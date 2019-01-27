@@ -1,23 +1,23 @@
 export default {
 	dorm: {
-		price: 100,
+		price: 150,
 		width: 6,
 		employee: true,
 		activity: 'sleep',
 		slots: 4
 	},
 	kitchen: {
-		price: 100,
+		price: 1000,
 		width: 7,
 		activity: 'eat',
 		slots: 3
 	},
 	janitor: {
-		price: 100,
+		price: 300,
 		width: 4,
 	},
 	playroom: {
-		price: 100,
+		price: 150,
 		width: 5,
 		employee: true,
 		activity: 'play',

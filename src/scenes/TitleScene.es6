@@ -11,15 +11,13 @@ export default class TitleScene extends Scene {
 		super();
 		this.setSize(config.screen.w, config.screen.h);
 		this.bg = 'img/title.png';
-		var playButton = Button.create(new V2(0, 680), () => this.parent.goto(new GameScene())).rect(280, 80).text("Play");
-		var creditsButton = Button.create(new V2(0, 680), () => this.parent.goto(new CreditsScene())).rect(360, 80).text("Credits");
-		var helpButton = Button.create(new V2(0, 680), () => alert('4')).rect(300, 80).text("Help");
+		var playButton = Button.create(new V2(251, 321), () => this.parent.goto(new GameScene())).img('img/ui/playbutton.png');
+		var creditsButton = Button.create(new V2(208, 404), () => this.parent.goto(new CreditsScene())).img('img/ui/creditsbutton.png');
+		var helpButton = Button.create(new V2(249, 363), () =>  window.open('https://github.com/MasterIV/OrphanageTycoon/blob/master/README.md')).img('img/ui/helpbutton.png');
 
-		var vLayout = new VerticalLayout(new V2(0, 20), 20, 50);
-		vLayout.add(playButton);
-		vLayout.add(creditsButton);
-		vLayout.add(helpButton);
-		vLayout.align("center");
-		this.center(vLayout);
+		
+		this.add(playButton);
+		this.add(helpButton);
+		this.add(creditsButton);
 	}
 }

@@ -15,6 +15,9 @@ window.onload = () => {
 
 	graphics.add('img/rooms/stairs.png');
 	graphics.add('img/ui/gamebg.png');
+	graphics.add('img/ui/playbutton.png');
+	graphics.add('img/ui/helpbutton.png');
+	graphics.add('img/ui/creditsbutton.png');
 	graphics.add('img/floor.png');
 	graphics.add('img/title.png');
 

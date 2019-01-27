@@ -5,11 +5,17 @@ export default {
 		' was left on your doorstep.',
 		' was found sleeping in an alleyway.',
 		' was found in a cave.',
-		' wandered in.'
+		' was found in a stable.',
+		' wandered in.',
+		' needed a new home.',
+		' is now part of your family.'
 	],
 	run_away: [
 		' has run away.',
 		' went to join the circus.',
-		' dissapeared.'
+		' went to buy cigarettes.',
+		' left the server.',
+		' dissapeared.',
+		' has rage quit.'
 	]
 }

@@ -32,8 +32,8 @@ export default class BuildRoomButton extends Button {
 	type(roomType) {
 		this.roomType = roomType;
 		var roomName = roomType[0].toUpperCase() + roomType.substr(1);
-		this.add(new TextEntity(new V2(this.size.x / 2, 25), roomName, this.font));
-		this.add(new TextEntity(new V2(this.size.x / 2, 75), '$' + rooms[this.roomType].price, this.font));
+		this.add(new TextEntity(new V2(this.size.x / 2, 15), roomName, this.font));
+		this.add(new TextEntity(new V2(this.size.x / 2, 83), '$' + rooms[this.roomType].price, this.font));
 		return this;
 	}
 }

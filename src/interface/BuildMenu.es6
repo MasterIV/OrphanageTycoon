@@ -18,7 +18,7 @@ export default class BuildMenu extends Entity {
 		for(var r in rooms) {
 			const room = r;
 			//buttonLayout.add(BuildRoomButton.create(Zero(), () => alert('Build ' + r)).img('img/rooms/' + r + '.png', 72.0 / (rooms[r].width * 32.0)));
-			buttonLayout.add(BuildRoomButton.create(Zero(), () => this.cursor.select(room), this.font).img('img/rooms/' + r + '.png', 72.0 / (7 * 32.0)).type(r));
+			buttonLayout.add(BuildRoomButton.create(Zero(), () => this.cursor.select(room), this.font).img('img/rooms/' + r + '.png', 90.0 / (7 * 32.0)).type(r));
 		}
 
 		this.center(buttonLayout);

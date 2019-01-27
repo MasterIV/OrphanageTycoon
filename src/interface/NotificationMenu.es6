@@ -29,6 +29,7 @@ export default class NotificationMenu extends Entity {
 	}
 	
 	addNotification(e) {
+		console.log(e.detail);
 		if(e.detail.type == 'new_child') {
 			this.notifications.push(e.detail.child.name + notificationMessages[e.detail.type][(Math.random() * notificationMessages[e.detail.type].length) | 0]);
 			this.scrollOffset++;
@@ -53,7 +54,7 @@ export default class NotificationMenu extends Entity {
 	
 	updateText() {
 		for(var i = 0; i < 6; i++) {
-			this.notificationDisplays[i].text(((this.scrollOffset - i - 1) <= 0) ? '' : this.notifications[this.scrollOffset - i - 1], this.scrollOffset - i - 1);
+			this.notificationDisplays[i].text(((this.scrollOffset - i - 1) < 0) ? '' : this.notifications[this.scrollOffset - i - 1], this.scrollOffset - i - 1);
 		}
 	}
 	
@@ -65,7 +66,7 @@ export default class NotificationMenu extends Entity {
 	
 	scrollDown() {
 		sound.play('sound/click.mp3');
-		this.scrollOffset = Math.max(2, this.scrollOffset - 1);
+		this.scrollOffset = Math.max(1, this.scrollOffset - 1);
 		this.updateText();
 	}
 }

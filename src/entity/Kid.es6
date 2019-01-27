@@ -141,10 +141,11 @@ export default class Kid extends Entity {
 			}
 
 			// move to room
+			this.climbing = false;
 			this.updateWalkAxis(speed*delta, this.destination.x, 'x');
 		} else if(this.climbing) {
 			// climb stairs
-			this.updateWalkAxis(speed * .8, this.destination.y, 'y');
+			this.updateWalkAxis(speed*delta*.8, this.destination.y, 'y');
 		} else {
 			if(this.position.x == 720) {
 				// climb the stairs

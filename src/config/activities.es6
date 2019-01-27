@@ -12,7 +12,7 @@ export default {
 	eat: {
 		happiness: 0,
 		duration: 4000,
-		value: 45
+		value: 50
 	},
 	play: {
 		happiness: 0,

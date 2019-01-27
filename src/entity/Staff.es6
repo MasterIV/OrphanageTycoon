@@ -75,7 +75,7 @@ export default class Staff extends Entity {
 				let rooms = 0;
 				for(var i in this.orphanage.counts)
 					rooms += this.orphanage.counts[i];
-				this.available.push(new Employee(Math.min(10, Math.round(rooms/ 10))));
+				this.available.push(new Employee(Math.min(8, Math.round(rooms/ 5))));
 			}
 		}
 	}

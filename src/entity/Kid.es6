@@ -54,10 +54,10 @@ export default class Kid extends Entity {
 		let hungerFactor = 1;
 		let happinessLoss = 0;
 
-		if (this.hunger < 20) {
+		if (this.hunger < 15) {
 			hungerFactor = .25;
 			happinessLoss = 2;
-		} else if (this.hunger < 40) {
+		} else if (this.hunger < 30) {
 			hungerFactor = .5;
 			happinessLoss = 1;
 		}

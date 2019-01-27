@@ -13,7 +13,7 @@ export default {
 		slots: 3
 	},
 	janitor: {
-		price: 800,
+		price: 700,
 		width: 4,
 		activity: 'repair',
 	},
@@ -25,7 +25,7 @@ export default {
 		slots: 2
 	},
 	classroom: {
-		price: 1000,
+		price: 800,
 		width: 6,
 		activity: 'learn',
 		slots: 3

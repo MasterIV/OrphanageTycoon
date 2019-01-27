@@ -20,6 +20,7 @@ window.onload = () => {
 
 	graphics.load(() => {
 		document.getElementById('loading').style.display = 'none';
+		document.getElementsByTagName('audio')[0].play();
 
 		const game = new Game(config);
 		controls.init(game);

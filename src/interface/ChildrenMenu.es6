@@ -20,6 +20,9 @@ export default class ChildrenMenu extends Entity {
 			this.add(info);
 		}
 		
+		this.add(Button.create(new V2(540, 10), () => this.scrollUp()).img('img/ui/upbutton.png'));
+		this.add(Button.create(new V2(540, 70), () => this.scrollDown()).img('img/ui/downbutton.png'));
+		
 		this.scrollOffset = 0;
 	}
 	
@@ -33,10 +36,10 @@ export default class ChildrenMenu extends Entity {
 	}
 	
 	scrollUp() {
-		scrollOffset = Math.max(0, scrollOffset - 1);
+		this.scrollOffset = Math.max(0, this.scrollOffset - 1);
 	}
 	
 	scrollDown() {
-		scrollOffset = Math.min(children.entities.length - 1, scrollOffset + 1);
+		this.scrollOffset = Math.min(this.children.entities.length - 1, this.scrollOffset + 1);
 	}
 }

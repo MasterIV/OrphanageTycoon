@@ -32,10 +32,18 @@ export default class ChildInfo extends Entity {
 	
 	setChild(child) {
 		this.child = child;
-		this.name.text = this.child.name;
-		this.happiness.size.x = (this.child.happiness / 100.0 * 145) | 0;
-		this.hunger.size.x = (this.child.hunger / 100.0 * 145) | 0;
-		this.education.text = this.child.education;
-		//this.gender.text = this.child.gender;
+		if(child === null) {
+			this.name.text = '';
+			this.happiness.size.x = 0;
+			this.hunger.size.x = 0;
+			this.education.text = '';
+			//this.gender.text = this.child.gender;
+		} else {
+			this.name.text = this.child.name;
+			this.happiness.size.x = (this.child.happiness / 100.0 * 145) | 0;
+			this.hunger.size.x = (this.child.hunger / 100.0 * 145) | 0;
+			this.education.text = this.child.education;
+			//this.gender.text = this.child.gender;
+		}
 	}
 }

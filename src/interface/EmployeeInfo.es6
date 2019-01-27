@@ -9,6 +9,7 @@ import Button from 'tin-engine/basic/button';
 import Staff from '../entity/Staff';
 
 graphics.add('img/ui/baremployee.png');
+graphics.add('img/ui/baremployeefaded.png');
 graphics.add('img/ui/hirebutton.png');
 graphics.add('img/ui/hirebuttonfaded.png');
 graphics.add('img/ui/firebutton.png');
@@ -19,7 +20,8 @@ export default class EmployeeInfo extends Entity {
 		this.staff = staff;
 		this.font = new FontStyle(18, 'white');
 		this.nameFont = new FontStyle(16, 'white');
-		this.add(new ImageEntity(Zero(), 'img/ui/baremployee.png'));
+		this.bg = new ImageEntity(Zero(), 'img/ui/baremployeefaded.png');
+		this.add(this.bg);
 		this.name = new TextEntity(new V2(50, 15), '', this.nameFont);
 		this.type = new TextEntity(new V2(130, 15), '', this.nameFont);
 		this.level = new TextEntity(new V2(230, 15), '', this.font);
@@ -89,9 +91,14 @@ export default class EmployeeInfo extends Entity {
 					this.hireButton.visible = false;				
 					this.fireButton.visible = true;
 				}
+				
+				if(this.curEmployee === null) {
+					this.bg.img = graphics['img/ui/baremployee.png'];
+				}
 				this.curEmployee = employee;
 			}
 		} else {
+			this.bg.img = graphics['img/ui/baremployeefaded.png'];
 			this.name.text = '';
 			this.type.text = '';
 			this.level.text = '';

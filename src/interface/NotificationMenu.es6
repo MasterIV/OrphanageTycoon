@@ -35,7 +35,7 @@ export default class NotificationMenu extends Entity {
 			this.scrollOffset++;
 		}
 		else if(e.detail.type == 'adoption') {
-			this.notifications.push(e.detail.child.name + ' has been adopted.');
+			this.notifications.push(e.detail.child.name + ' has been adopted. $' + e.detail.donation + ' has been donated.');
 			this.scrollOffset++;
 		}
 		else if(e.detail.type == 'run_away') {
